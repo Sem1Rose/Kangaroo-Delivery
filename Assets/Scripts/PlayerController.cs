@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour
     bool startSuperJumpCountDown = false;
 
     //Public variables, change in the inspector. Most values were set by trial and error
-    public Transform cam;
+    public GameObject cam;
     public float walkingSpeed = 10f;
     public float runningSpeed = 20f;
     public float maxStamina = 7f; //Seconds
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        cam = FindObjectsByType<Camera>(FindObjectsSortMode.None).FirstOrDefault(x => x.gameObject.CompareTag("MainCamera")).gameObject;
         controller = GetComponent<CharacterController>();
         
         Cursor.lockState = CursorLockMode.Locked;
@@ -102,7 +104,7 @@ public class PlayerController : MonoBehaviour
         if(movement.magnitude >= .1f && !superJumping) //Calculate and move the player
         {
             //First rotate the player to the face movement vector 
-            float targetMovementAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float targetMovementAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
             float movementAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetMovementAngle, ref movementRotationVel, playerTurnSmoothness);
             transform.rotation = Quaternion.Euler(0f, movementAngle, 0f);
 

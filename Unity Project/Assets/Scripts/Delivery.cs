@@ -9,18 +9,21 @@ public class Delivery : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.CompareTag("Crate") && !delivering)
+        if(collider.gameObject.CompareTag("NPC") && !delivering)
         {
-            collider.transform.parent = transform;
-            collider.transform.position = deliveryObjectHolder.position;
-            collider.transform.localRotation = Quaternion.identity;
+            collider.GetComponent<NPC>().OnAccepting();
             
-            deliveryChild = collider.gameObject; 
+            Transform crate = collider.gameObject.GetComponent<NPC>().crate;
+            crate.parent = transform;
+            crate.position = deliveryObjectHolder.position;
+            crate.localRotation = Quaternion.identity;
+            
+            deliveryChild = crate.gameObject; 
 
             delivering = true;
 
             QuestHandler.instance.inQuest = true;
-            QuestHandler.instance.currentQuestDestination = collider.gameObject.GetComponent<Crate>().destination;
+            QuestHandler.instance.currentQuestDestination = crate.gameObject.GetComponent<Crate>().destination;
             QuestHandler.instance.UpdateQuest();    
         }
         else if(collider.gameObject.CompareTag("Destination"))

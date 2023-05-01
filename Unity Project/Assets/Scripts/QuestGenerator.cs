@@ -2,16 +2,24 @@ using UnityEngine;
 
 public class QuestGenerator : MonoBehaviour
 {
-    public GameObject deliveryPrefab;
+    public GameObject NPCPrefab;
     public GameObject destinationPrefab; 
-    
-    void Start()
+    public static QuestGenerator instance;
+
+    void Awake()
     {
-        Vector3 deliveryPos = new Vector3(Random.Range(-20f, 20f), 1f, Random.Range(-20f, 20f));
-        Vector3 destinationPos = new Vector3(Random.Range(-20f, 20f), 1f, Random.Range(-20f, 20f));
+        if(instance != null)
+            Debug.LogError("more than one Quest Generator in the scene!");
+        instance = this;
+    }
+    
+    public void GenerateQuest()
+    {
+        Vector3 NPCPos = new Vector3(Random.Range(-100f, 100f), 1f, Random.Range(-100f, 100f));
+        Vector3 destinationPos = new Vector3(Random.Range(-100f, 100f), 2f, Random.Range(-100f, 100f));
 
-        GameObject delivery = Instantiate(deliveryPrefab, deliveryPos, Quaternion.identity);
+        GameObject NPC = Instantiate(NPCPrefab, NPCPos, Quaternion.identity);
 
-        delivery.GetComponent<Crate>().destination = destinationPos;
+        NPC.GetComponent<NPC>().crate.GetComponent<Crate>().destination = destinationPos;
     }
 }

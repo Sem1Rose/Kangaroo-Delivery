@@ -19,6 +19,14 @@ public class QuestHandler : MonoBehaviour
         instance = this;
     }
 
+    void Update()
+    {
+        if(!FindAnyObjectByType<Crate>())
+        {
+            QuestGenerator.instance.GenerateQuest();
+        }
+    }
+
     public void UpdateQuest()
     {
         if(questDestinationObject != null)

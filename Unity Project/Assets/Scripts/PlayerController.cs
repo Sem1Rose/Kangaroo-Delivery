@@ -15,9 +15,9 @@ public class PlayerController : MonoBehaviour
     float groundCheckRadius = .1f;
     float timeSinceLastSuperJump = 5f;
     bool startSuperJumpCountDown = false;
+    GameObject cam;
 
     //Public variables, change in the inspector. Most values were set by trial and error
-    public GameObject cam;
     public float walkingSpeed = 10f;
     public float runningSpeed = 20f;
     public float maxStamina = 7f; //Seconds
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        bool grounded =  Physics.CheckSphere(groundCheck.position, groundCheckRadius, whatIsGround); //Check if the player is on the ground
+        bool grounded =  Physics.OverlapSphere(groundCheck.position, groundCheckRadius, whatIsGround).Any(x => x.isTrigger == false); //Check if the player is on the ground
         Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized; //Get the H and V input data 
 
         if(grounded && verticalVel < 0) //Reset the vertical velocity if the character is grounded 

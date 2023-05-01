@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2233113736837359850}
   - component: {fileID: 252099815635519081}
   - component: {fileID: 8958770214349624534}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Delivery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 339502787175781597}
   - component: {fileID: 2331297608122906873}
   - component: {fileID: 1179488446086116436}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

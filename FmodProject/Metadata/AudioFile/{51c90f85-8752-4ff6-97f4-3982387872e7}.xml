@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{51c90f85-8752-4ff6-97f4-3982387872e7}">
+		<property name="assetPath">
+			<value>Musics/Gameplay music/Project_Ludumdare_gameplay.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>154.06249433106575</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7d105f8c-0e62-4a12-a38e-2baea2ea8860}</destination>
+		</relationship>
+	</object>
+</objects>
